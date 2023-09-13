@@ -1,5 +1,6 @@
 package com.example.myapplication.Adapter;
 
+import android.content.Context;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.Model.ToDoModel;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.DatabaseHandler;
 
 import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder>{
 
     private List <ToDoModel> todoList;
+    private DatabaseHandler db;
+
+    public ToDoAdapter(DatabaseHandler db, MainActivity activity) {
+        this.db = db;
+        this.activity = activity;
+    }
+
     private MainActivity activity;
 
     public ToDoAdapter(MainActivity activity){
@@ -45,6 +54,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder>{
             notifyDataSetChanged();
         }
 
+        public Context getContext() { return activity; }
+
+        public void deleteItem(int position){
+        ToDoModel item = todoList.get(position);
+        db.deleteTask(item.getId());
+        todoList.remove(position);
+        notifyItemRemoved(position);
+        }
         public static class ViewHolder extends RecyclerView.ViewHolder{
             CheckBox task;
 
