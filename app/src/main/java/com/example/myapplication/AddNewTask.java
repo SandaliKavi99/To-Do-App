@@ -46,7 +46,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         newTaskText = getView().findViewById(R.id.newTaskText);
+        System.out.println("awa");
         newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
+        System.out.println(newTaskSaveButton);
 
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
@@ -91,9 +93,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
                 }else{
-                    ToDoModel task= new ToDoModel();
-                    task.setTask(text);
-                    task.setStatus(0);
+//                    ToDoModel task= new ToDoModel();
+//                    task.setTask(text);
+//                    task.setStatus(0);
                 }
                 dismiss();
             }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <EditText
+        android:id="@+id/description2"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:hint="description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title2" />
+
+    <EditText
+        android:id="@+id/dueDate2"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:hint="dueDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description2" />
+
+    <EditText
+        android:id="@+id/priority2"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:hint="priority"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dueDate2" />
+
+    <EditText
+        android:id="@+id/title2"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="188dp"
+        android:hint="title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="138dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/purple_200"
+        android:text="Update"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priority2" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="132dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/red"
+        android:text="Delete"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priority2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
