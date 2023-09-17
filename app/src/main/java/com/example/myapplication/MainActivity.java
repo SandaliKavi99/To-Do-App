@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ToDoAdapter;
@@ -43,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private FloatingActionButton fab;
     private DatabaseHandler db;
     private Context context;
+    private SearchView searchView;
+    private Button allBtn;
+    private Button category1;
+    private Button category2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +61,55 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         db.openDatabase();
 
         taskList = new ArrayList<>();
+
+        //get search view as a variable
+        searchView = findViewById(R.id.searchView);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
+
+
+        //get all categories
+        allBtn=findViewById(R.id.btnall);
+        category1=findViewById(R.id.btncat1);
+        category2=findViewById(R.id.btncat2);
+
+        allBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                categorize("all");
+            }
+        });
+
+        category1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                categorize("Category1");
+
+            }
+        });
+
+        category2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                categorize("Category2");
+            }
+        });
+
+
+
+
 
         //get recyclerview as a variable
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
@@ -77,6 +133,56 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksRecyclerView.setAdapter(customerAdaptor);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+    }
+
+    private void categorize(String text) {
+        ArrayList<ToDoModel> categorizedList = new ArrayList<>();
+
+
+        if(text=="all"){
+            categorizedList=taskList;
+
+        }
+        if(text=="Category1"){
+            for(ToDoModel task : taskList){
+                if(task.getCategory().contains("Category1")){
+                    categorizedList.add(task);
+                }
+            }
+
+        }
+
+        if(text=="Category2"){
+            for(ToDoModel task : taskList){
+                Log.i("tag1",task.getCategory());
+
+                if(task.getCategory().contains("Category2")){
+                    categorizedList.add(task);
+                }
+            }
+
+        }
+
+        customerAdaptor.setCategorizedList(categorizedList);
+    }
+
+    //filterList
+    private void filterList(String text) {
+        ArrayList<ToDoModel> filteredList = new ArrayList<>();
+        for(ToDoModel task : taskList){
+             if(task.getTitle().toLowerCase().contains(text.toLowerCase())){
+                        filteredList.add(task);
+             }
+             if(task.getDueDate().contains(text)){
+                   filteredList.add(task);
+             }
+        }
+        
+        if(filteredList.isEmpty()){
+            Toast.makeText(this, "No Data Found!", Toast.LENGTH_SHORT).show();
+        }else{
+            customerAdaptor.setFilteredList(filteredList);
+        }
     }
 
     @Override

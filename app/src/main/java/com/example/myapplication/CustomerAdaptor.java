@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Model.ToDoModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyViewHolder> {
 
@@ -27,6 +28,19 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
         this.context = context;
         this.activity = activity;
         this.taskList = toDoModelArrayList;
+    }
+
+    //categorization
+    public void setCategorizedList(ArrayList<ToDoModel> categorizedList){
+        this.taskList=categorizedList;
+        notifyDataSetChanged();
+    }
+
+
+    //set filteredList
+    public void setFilteredList(ArrayList<ToDoModel> filteredList){
+        this.taskList=filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -65,6 +79,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
         });
 
     }
+
 
     @Override
     public int getItemCount() {
