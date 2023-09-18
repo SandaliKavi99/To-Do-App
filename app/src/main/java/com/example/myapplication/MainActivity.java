@@ -74,7 +74,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+                if(!newText.isEmpty()){
+                    filterList(newText);
+
+                }
                 return true;
             }
         });
@@ -152,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         }
         if(text=="Category1"){
             for(ToDoModel task : taskList){
-                if(task.getCategory().contains("Category1")){
+                if(task.getCategory().contains("Later")){
                     categorizedList.add(task);
                 }
             }
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             for(ToDoModel task : taskList){
                 Log.i("tag1",task.getCategory());
 
-                if(task.getCategory().contains("Category2")){
+                if(task.getCategory().contains("Urgent")){
                     categorizedList.add(task);
                 }
             }
@@ -176,20 +179,23 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     //filterList
     private void filterList(String text) {
         ArrayList<ToDoModel> filteredList = new ArrayList<>();
-        for(ToDoModel task : taskList){
-             if(task.getTitle().toLowerCase().contains(text.toLowerCase())){
-                        filteredList.add(task);
-             }
-             if(task.getDueDate().contains(text)){
-                   filteredList.add(task);
-             }
-        }
 
-        if(filteredList.isEmpty()){
-            Toast.makeText(this, "No Data Found!", Toast.LENGTH_SHORT).show();
-        }else{
-            customerAdaptor.setFilteredList(filteredList);
-        }
+            for (ToDoModel task : taskList) {
+                if (task.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(task);
+                }
+                if (task.getDueDate().contains(text)) {
+                    filteredList.add(task);
+                }
+
+            }
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(this, "No Data Found!", Toast.LENGTH_SHORT).show();
+            } else {
+                customerAdaptor.setFilteredList(filteredList);
+            }
+
     }
 
     @Override
@@ -216,10 +222,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 task.setTitle(cursor.getString(1));
                 task.setDescription(cursor.getString(2));
                 task.setDueDate(cursor.getString(3));
-                task.setPriority(Integer.parseInt(cursor.getString(4)));
                 task.setCategory(cursor.getString(5));
 
-                System.out.println();
+                System.out.println(cursor.getString(5));
 
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

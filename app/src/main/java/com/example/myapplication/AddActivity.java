@@ -18,7 +18,7 @@ import com.example.myapplication.Utils.DatabaseHandler;
 public class AddActivity extends AppCompatActivity {
     EditText titleInput,descriptionInput,dueDateInput,priorityInput;
     Button addBtn;
-    String[] items = {"Category1","Category2"};
+    String[] items = {"Urgent","Later"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
     String item;
@@ -43,7 +43,6 @@ public class AddActivity extends AppCompatActivity {
         titleInput= findViewById(R.id.title);
         descriptionInput= findViewById(R.id.description);
         dueDateInput= findViewById(R.id.dueDate);
-        priorityInput= findViewById(R.id.priority);
         addBtn= findViewById(R.id.save);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -55,10 +54,9 @@ public class AddActivity extends AppCompatActivity {
                 task.setTitle(titleInput.getText().toString().trim());
                 task.setDescription(descriptionInput.getText().toString().trim());
                 task.setDueDate(dueDateInput.getText().toString().trim());
-                task.setPriority(Integer.parseInt(priorityInput.getText().toString().trim()));
-                Log.i("my_error",item);
-                task.setCategory(item);
+                task.setCategory(autoCompleteTextView.getText().toString().trim());
                 databaseHandler.insertTask(task);
+//                System.out.println(task.getCategory());
                 
             }
         });

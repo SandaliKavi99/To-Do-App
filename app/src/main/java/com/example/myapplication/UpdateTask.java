@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,16 +20,30 @@ public class UpdateTask extends AppCompatActivity {
     EditText task_title,task_description,task_due_date,task_priority;
     Button editBtn,deleteBtn;
     Context context;
+    String[] items1 = {"Urgent","Later"};
+    AutoCompleteTextView autoCompleteTextView1;
+    ArrayAdapter<String> adapterItems1;
+    String item1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        autoCompleteTextView1=findViewById(R.id.auto_complete_txt1);
+        adapterItems1 = new ArrayAdapter<String>(this,R.layout.list_item,items1);
+        autoCompleteTextView1.setAdapter(adapterItems1);
+
+        autoCompleteTextView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item1= parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), "Item:"+item1, Toast.LENGTH_SHORT).show();
+            }
+        });
         task_title = findViewById(R.id.title2);
         task_description = findViewById(R.id.description2);
         task_due_date = findViewById(R.id.dueDate2);
-        task_priority = findViewById(R.id.priority2);
         editBtn = findViewById(R.id.edit);
         deleteBtn = findViewById(R.id.delete);
 
@@ -34,7 +51,7 @@ public class UpdateTask extends AppCompatActivity {
         task_title.setText(extras.getString("Title"));
         task_description.setText(extras.getString("Description"));
         task_due_date.setText(extras.getString("DueDate"));
-        task_priority.setText(extras.getString("Priority"));
+        autoCompleteTextView1.setText(extras.getString("Category"));
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,15 +65,11 @@ public class UpdateTask extends AppCompatActivity {
                 task.setTitle(task_title.getText().toString().trim());
                 task.setDescription(task_description.getText().toString().trim());
                 task.setDueDate(task_due_date.getText().toString().trim());
+                task.setCategory(autoCompleteTextView1.getText().toString().trim());
 
 
 
-                try {
-                    task.setPriority(Integer.parseInt(task_priority.getText().toString().trim()));
-                } catch (NumberFormatException e) {
-                    Toast.makeText(UpdateTask.this, "Invalid priority value!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
 
                 databaseHandler.updateTaskDetail(task);
 

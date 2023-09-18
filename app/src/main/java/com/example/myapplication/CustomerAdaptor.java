@@ -60,7 +60,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
         holder.task_description.setText(String.valueOf(taskList.get(position).getDescription()));
         holder.task_due_date.setText(String.valueOf(taskList.get(position).getDueDate()));
         holder.centegory_name.setText(String.valueOf(taskList.get(position).getCategory()));
-//        Log.i("my_error",taskList.get(position).getCategory());
+
 
         System.out.println(taskList.get(position).getCategory());
 
@@ -79,7 +79,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
                 intent.putExtra("Title", String.valueOf(taskList.get(currentPosition).getTitle()));
                 intent.putExtra("Description", String.valueOf(taskList.get(currentPosition).getDescription()));
                 intent.putExtra("DueDate", String.valueOf(taskList.get(currentPosition).getDueDate()));
-                intent.putExtra("Priority", String.valueOf(taskList.get(currentPosition).getPriority()));
+                intent.putExtra("Category", String.valueOf(taskList.get(currentPosition).getCategory()));
 
                 activity.startActivityForResult(intent,1);
             }

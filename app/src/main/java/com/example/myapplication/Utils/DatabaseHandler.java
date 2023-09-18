@@ -24,12 +24,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TITLE = "title";
     private static final String DESCRIPTION = "description";
     private static final String DUE_DATE = "due_date";
-    private static final String PRIORITY = "priority";
     private static final String IMGNAME = "image_name";
     private static final String CATEGORY = "category";
     private static final String IMG = "image";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + TITLE + " TEXT," + DESCRIPTION + " TEXT," + DUE_DATE + " TEXT," + PRIORITY + " INTEGER,"+ CATEGORY + " TEXT," +IMG+" BLOB)";
+            + TITLE + " TEXT," + DESCRIPTION + " TEXT," + DUE_DATE + " TEXT," + CATEGORY + " TEXT," +IMG+" BLOB)";
 
     private ByteArrayOutputStream byteArrayOutputStream;
     private byte[] imgInByte;
@@ -65,7 +64,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put(DESCRIPTION, task.getDescription());
         cv.put(DUE_DATE, task.getDueDate());
         cv.put(CATEGORY, task.getCategory());
-        cv.put(PRIORITY, task.getPriority());
 
         Long result =db.insert(TODO_TABLE,null,cv);
         if(result == -1){
@@ -73,6 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         else {
             Toast.makeText(context,"Added Successfully",Toast.LENGTH_SHORT).show();
+            System.out.println(task.getCategory());
         }
     }
 
@@ -96,7 +95,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put(TITLE, toDoModel.getTitle());
         cv.put(DESCRIPTION, toDoModel.getDescription());
         cv.put(DUE_DATE, toDoModel.getDueDate());
-        cv.put(PRIORITY, toDoModel.getPriority());
 
         int result = db.update(TODO_TABLE,cv,"id=?",new String[]{String.valueOf(toDoModel.getId())});
 
@@ -138,6 +136,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         else{
             Toast.makeText(context,"Delete Successfully",Toast.LENGTH_SHORT).show();
+
         }
     }
 

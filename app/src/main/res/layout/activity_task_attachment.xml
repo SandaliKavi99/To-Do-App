@@ -10,12 +10,13 @@
         android:id="@+id/imageSave"
         android:layout_width="330dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginTop="68dp"
         android:text="Attach"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="#4CAF50"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"

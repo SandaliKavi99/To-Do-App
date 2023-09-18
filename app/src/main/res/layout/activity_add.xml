@@ -6,27 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity">
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="28dp"
-        android:hint="description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        />
-
-    <EditText
-        android:id="@+id/dueDate"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="28dp"
-        android:hint="dueDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
-
     <!--    <EditText-->
 <!--        android:id="@+id/category"-->
 <!--        android:layout_width="330dp"-->
@@ -38,16 +17,49 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/dueDate" />-->
 
     <EditText
-        android:id="@+id/priority"
+        android:id="@+id/dueDate"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:hint="dueDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
+    <EditText
+        android:id="@+id/description"
         android:layout_width="330dp"
         android:layout_height="40dp"
         android:layout_marginTop="28dp"
-        android:hint="priority"
+        android:hint="description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dueDate" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="76dp"
+        android:hint="title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="330dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="76dp"
+        android:text="Save"
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -55,11 +67,15 @@
         android:layout_width="348dp"
         android:layout_height="74dp"
         android:layout_margin="16dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="8dp"
+
+        android:layout_marginTop="40dp"
         android:hint="@string/select"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priority"
+        app:layout_constraintTop_toBottomOf="@+id/dueDate"
+        app:layout_constraintVertical_bias="0.029"
         tools:ignore="MissingConstraints">
 
         <AutoCompleteTextView
@@ -70,25 +86,5 @@
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/title"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="188dp"
-        android:hint="title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="330dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="40dp"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
