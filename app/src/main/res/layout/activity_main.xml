@@ -5,12 +5,29 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.appcompat.widget.SearchView
+
+        android:id="@+id/searchView"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="39dp"
+        android:background="@drawable/search_view_bg"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search Here" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/fab" />
+        android:layout_width="379dp"
+        android:layout_height="535dp"
+        android:layout_above="@id/fab"
+        android:layout_below="@+id/searchView"
+        android:layout_marginTop="186dp"
+        android:layout_marginBottom="86dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -36,6 +53,40 @@
         android:layout_toStartOf="@+id/fab"
         app:srcCompat="@drawable/faqs"
         tools:ignore="SpeakableTextPresentCheck" />
+        <Button
+            android:id="@+id/btnall"
+            android:layout_width="78dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/searchView"
+            android:layout_alignBottom="@+id/tasksRecyclerView"
+            android:layout_marginTop="63dp"
+            android:layout_marginBottom="358dp"
+            android:text="All"
+            app:backgroundTint="#CDDC39" />
+
+        <Button
+            android:id="@+id/btncat1"
+            android:layout_width="132dp"
+            android:layout_height="46dp"
+            android:layout_below="@+id/searchView"
+            android:layout_alignBottom="@+id/tasksRecyclerView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="78dp"
+            android:layout_marginEnd="178dp"
+            android:layout_marginBottom="342dp"
+            android:text="Category1"
+            app:backgroundTint="#CDDC39" />
+
+        <Button
+            android:id="@+id/btncat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tasksRecyclerView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="293dp"
+            android:text="Category 2"
+            app:backgroundTint="#CDDC39" />
 
 
 </RelativeLayout>

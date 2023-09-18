@@ -25,9 +25,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder>{
     private List <ToDoModel> todoList;
     private DatabaseHandler db;
 
+
     public ToDoAdapter(DatabaseHandler db, MainActivity activity) {
         this.db = db;
         this.activity = activity;
+    }
+
+
+    //set filteredList
+    public void setFilteredList(List<ToDoModel> filteredList){
+        this.todoList = filteredList;
+        notifyDataSetChanged();
     }
 
 //    create new view

@@ -11,6 +11,7 @@ public class ToDoModel {
     private String dueDate;
     private int priority;
     private Bitmap img;
+    private String category;
 
 
 
@@ -21,6 +22,7 @@ public class ToDoModel {
     public void setImg(Bitmap img) {
         this.img = img;
     }
+
 
 
 
@@ -59,5 +61,13 @@ public class ToDoModel {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
