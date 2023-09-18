@@ -46,7 +46,6 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         newTaskText = getView().findViewById(R.id.newTaskText);
-        System.out.println("awa");
         newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
         System.out.println(newTaskSaveButton);
 

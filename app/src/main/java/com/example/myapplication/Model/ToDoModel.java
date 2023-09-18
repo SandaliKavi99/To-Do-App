@@ -1,5 +1,7 @@
 package com.example.myapplication.Model;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class ToDoModel {
@@ -8,6 +10,19 @@ public class ToDoModel {
     private String description;
     private String dueDate;
     private int priority;
+    private Bitmap img;
+
+
+
+    public Bitmap getImg() {
+        return img;
+    }
+
+    public void setImg(Bitmap img) {
+        this.img = img;
+    }
+
+
 
 
     public int getId() { return id;}

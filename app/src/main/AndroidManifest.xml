@@ -17,15 +17,26 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".AddActivity"
-            android:label="Add Task"
+            android:name=".FaqActivity"
+            android:exported="false"
+            android:label="FAQ"
             android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            />
+        <activity
+            android:name=".TaskAttachment"
+            android:exported="false"
+            android:label="Add Attachment"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="false"
+            android:label="Add Task"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UpdateTask"
+            android:exported="false"
             android:label="Edit Task"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -38,6 +49,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
         <receiver android:name=".NotificationBroadcast" />
     </application>
 

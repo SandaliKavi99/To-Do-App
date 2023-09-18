@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ToDoAdapter;
@@ -58,16 +59,22 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //get recyclerview as a variable
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ImageButton imgBtn = findViewById(R.id.faqBtn);
 
-//
         fab=findViewById(R.id.fab);
-
-
 
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,AddActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imgBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,FaqActivity.class);
                 startActivity(intent);
             }
         });
@@ -94,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         Cursor cursor = db.readAllData();
         String today;
         if (cursor.getCount() == 0){
-            Toast.makeText(context,"Empty",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Empty",Toast.LENGTH_SHORT).show();
         }
         else{
             while (cursor.moveToNext()){
@@ -105,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 task.setDueDate(cursor.getString(3));
                 task.setPriority(Integer.parseInt(cursor.getString(4)));
 
+
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     Date date = format.parse(task.getDueDate());
@@ -114,6 +122,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                     int day = calendar.get(Calendar.DAY_OF_MONTH);
                    today= (month<10)?  year +"-0"+month+"-"+ day : year +"-"+month+"-"+day;
 
+                   if(task.getDueDate().equals(today)){
+                       createNotification();
+                   }
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -148,8 +159,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0,intent,PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        long time = System.currentTimeMillis();
-        long tenSecondInMails = 1000 *10;
-        alarmManager.set(AlarmManager.RTC_WAKEUP,time+tenSecondInMails,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,0,pendingIntent);
     }
 }

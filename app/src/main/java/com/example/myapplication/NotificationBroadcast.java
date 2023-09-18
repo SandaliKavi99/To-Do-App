@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -19,4 +20,6 @@ public class NotificationBroadcast extends BroadcastReceiver {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(200,builder.build());
     }
+
+
 }

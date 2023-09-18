@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -63,6 +64,20 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
                 activity.startActivityForResult(intent,1);
             }
         });
+        holder.attachment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentPosition = holder.getAdapterPosition(); // fetch the position here
+
+                if (currentPosition == RecyclerView.NO_POSITION) {
+                    // This happens if, for some reason, the item doesn't exist in the adapter anymore (e.g., it was removed).
+                    return;
+                }
+                Intent intent = new Intent(context,TaskAttachment.class);
+                intent.putExtra("TaskID",taskList.get(currentPosition).getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -74,6 +89,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView task_title,task_description,task_due_date,task_id;
+        ImageButton attachment;
         LinearLayout linearLayout;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -83,6 +99,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
             task_description = itemView.findViewById(R.id.taskDescription);
             task_due_date = itemView.findViewById(R.id.taskDueDate);
             linearLayout = itemView.findViewById(R.id.mainLayout);
+            attachment = itemView.findViewById(R.id.attachment);
         }
     }
 }

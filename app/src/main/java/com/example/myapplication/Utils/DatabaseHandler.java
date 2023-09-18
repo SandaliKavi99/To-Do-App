@@ -5,10 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.example.myapplication.Model.ToDoModel;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,9 +25,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DESCRIPTION = "description";
     private static final String DUE_DATE = "due_date";
     private static final String PRIORITY = "priority";
+    private static final String IMGNAME = "image_name";
+    private static final String IMG = "image";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + TITLE + " TEXT," + DESCRIPTION + " TEXT," + DUE_DATE + " TEXT," + PRIORITY + " INTEGER)";
-
+            + TITLE + " TEXT," + DESCRIPTION + " TEXT," + DUE_DATE + " TEXT," + PRIORITY + " INTEGER,"+IMG+" BLOB)";
+    private ByteArrayOutputStream byteArrayOutputStream;
+    private byte[] imgInByte;
 
     private SQLiteDatabase db;
     public DatabaseHandler(Context context){
@@ -67,31 +72,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-//    public List<ToDoModel> getAllTasks() {
-//        List<ToDoModel> taskList = new ArrayList<>();
-//        Cursor cur = null;
-//        db.beginTransaction();
-//        try {
-//            cur = db.query(TODO_TABLE, null, null, null, null, null,null, null);
-//            if (cur != null){
-//                if(cur.moveToFirst()){
-//                    do{
-//                        ToDoModel task = new ToDoModel();
-////                        task.setId(cur.getInt(cur.getColumnIndex(ID)));
-////                        task.setTask(cur.getString(cur.getColumnIndex(TITLE)));
-////                        task.setStatus(cur.getInt(cur.getColumnIndex(DESCRIPTION)));
-//                        taskList.add(task);
-//                    }while (cur.moveToNext());
-//                }
-//            }
-//        }
-//        finally {
-//            db.endTransaction();
-//            cur.close();
-//        }
-//        return taskList;
-//    }
-
 //    view all data
     public Cursor readAllData(){
         String query = " SELECT * FROM " + TODO_TABLE;
@@ -121,6 +101,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         else{
             Toast.makeText(context,"Update Successfully",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void uploadImg(ToDoModel toDoModel){
+        ContentValues cv = new ContentValues();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Bitmap img = toDoModel.getImg();
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        img.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        imgInByte = byteArrayOutputStream.toByteArray();
+
+        cv.put(IMG, imgInByte);
+
+        int result = db.update(TODO_TABLE,cv,"id=?",new String[]{String.valueOf(toDoModel.getId())});
+
+        if(result == -1){
+            Toast.makeText(context,"Failed to Attach",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(context,"Attach Successfully",Toast.LENGTH_SHORT).show();
         }
     }
 
