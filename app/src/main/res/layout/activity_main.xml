@@ -13,21 +13,21 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="39dp"
+        android:layout_marginEnd="41dp"
         android:background="@drawable/search_view_bg"
         app:iconifiedByDefault="false"
         app:queryHint="Search Here" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
-        android:layout_width="379dp"
-        android:layout_height="535dp"
+        android:layout_width="375dp"
+        android:layout_height="577dp"
         android:layout_above="@id/fab"
-        android:layout_below="@+id/searchView"
-        android:layout_marginTop="186dp"
-        android:layout_marginBottom="86dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="131dp"
+        android:layout_marginBottom="-11dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -43,50 +43,52 @@
 
     <ImageButton
         android:id="@+id/faqBtn"
-        android:layout_width="99dp"
-        android:layout_height="65dp"
+        android:layout_width="108dp"
+        android:layout_height="69dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="51dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginBottom="25dp"
         android:layout_toStartOf="@+id/fab"
         app:srcCompat="@drawable/faqs"
         tools:ignore="SpeakableTextPresentCheck" />
-        <Button
-            android:id="@+id/btnall"
-            android:layout_width="78dp"
-            android:layout_height="45dp"
-            android:layout_below="@+id/searchView"
-            android:layout_alignBottom="@+id/tasksRecyclerView"
-            android:layout_marginTop="63dp"
-            android:layout_marginBottom="358dp"
-            android:text="All"
-            app:backgroundTint="#CDDC39" />
 
-        <Button
-            android:id="@+id/btncat1"
-            android:layout_width="132dp"
-            android:layout_height="46dp"
-            android:layout_below="@+id/searchView"
-            android:layout_alignBottom="@+id/tasksRecyclerView"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="78dp"
-            android:layout_marginEnd="178dp"
-            android:layout_marginBottom="342dp"
-            android:text="Category1"
-            app:backgroundTint="#CDDC39" />
+    <Button
+        android:id="@+id/btnall"
+        android:layout_width="80dp"
+        android:layout_height="37dp"
+        android:layout_below="@+id/searchView"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="153dp"
+        android:layout_toStartOf="@+id/btncat1"
+        android:text="All"
+        android:textSize="10sp"
+        app:backgroundTint="#CDDC39" />
 
-        <Button
-            android:id="@+id/btncat2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tasksRecyclerView"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="46dp"
-            android:layout_marginBottom="293dp"
-            android:text="Category 2"
-            app:backgroundTint="#CDDC39" />
+    <Button
+        android:id="@+id/btncat1"
+        android:layout_width="106dp"
+        android:layout_height="37dp"
+        android:layout_below="@+id/searchView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="29dp"
+        android:textSize="10sp"
+        android:text="Category1"
+        app:backgroundTint="#CDDC39" />
+
+    <Button
+        android:id="@+id/btncat2"
+        android:layout_width="106dp"
+        android:layout_height="37dp"
+        android:layout_below="@+id/searchView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="159dp"
+        android:textSize="10sp"
+        android:text="Category 2"
+        app:backgroundTint="#CDDC39" />
 
 
 </RelativeLayout>
