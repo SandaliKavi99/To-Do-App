@@ -217,6 +217,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 task.setDescription(cursor.getString(2));
                 task.setDueDate(cursor.getString(3));
                 task.setPriority(Integer.parseInt(cursor.getString(4)));
+                task.setCategory(cursor.getString(5));
+
+                System.out.println();
 
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

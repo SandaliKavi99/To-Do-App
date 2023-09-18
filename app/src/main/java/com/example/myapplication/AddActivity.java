@@ -21,7 +21,7 @@ public class AddActivity extends AppCompatActivity {
     String[] items = {"Category1","Category2"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
-    String item="None";
+    String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class AddActivity extends AppCompatActivity {
                 task.setDescription(descriptionInput.getText().toString().trim());
                 task.setDueDate(dueDateInput.getText().toString().trim());
                 task.setPriority(Integer.parseInt(priorityInput.getText().toString().trim()));
+                Log.i("my_error",item);
                 task.setCategory(item);
                 databaseHandler.insertTask(task);
                 

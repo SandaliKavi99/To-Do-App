@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private Context context;
     private static final String NAME = "toDoListDatabase";
     private static final String TODO_TABLE = "todo";
@@ -26,9 +26,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DUE_DATE = "due_date";
     private static final String PRIORITY = "priority";
     private static final String IMGNAME = "image_name";
+    private static final String CATEGORY = "category";
     private static final String IMG = "image";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + TITLE + " TEXT," + DESCRIPTION + " TEXT," + DUE_DATE + " TEXT," + PRIORITY + " INTEGER,"+IMG+" BLOB)";
+            + TITLE + " TEXT," + DESCRIPTION + " TEXT," + DUE_DATE + " TEXT," + PRIORITY + " INTEGER,"+ CATEGORY + " TEXT," +IMG+" BLOB)";
+
     private ByteArrayOutputStream byteArrayOutputStream;
     private byte[] imgInByte;
 
@@ -62,7 +64,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put(TITLE, task.getTitle());
         cv.put(DESCRIPTION, task.getDescription());
         cv.put(DUE_DATE, task.getDueDate());
+        cv.put(CATEGORY, task.getCategory());
         cv.put(PRIORITY, task.getPriority());
+
         Long result =db.insert(TODO_TABLE,null,cv);
         if(result == -1){
             Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();

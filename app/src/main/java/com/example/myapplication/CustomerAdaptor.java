@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,11 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
         holder.task_title.setText(String.valueOf(taskList.get(position).getTitle()));
         holder.task_description.setText(String.valueOf(taskList.get(position).getDescription()));
         holder.task_due_date.setText(String.valueOf(taskList.get(position).getDueDate()));
+        holder.centegory_name.setText(String.valueOf(taskList.get(position).getCategory()));
+//        Log.i("my_error",taskList.get(position).getCategory());
+
+        System.out.println(taskList.get(position).getCategory());
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +109,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView task_title,task_description,task_due_date,task_id;
+        TextView task_title,task_description,task_due_date,task_id,centegory_name;
         ImageButton attachment;
         LinearLayout linearLayout;
 
@@ -115,6 +121,7 @@ public class CustomerAdaptor extends RecyclerView.Adapter<CustomerAdaptor.MyView
             task_due_date = itemView.findViewById(R.id.taskDueDate);
             linearLayout = itemView.findViewById(R.id.mainLayout);
             attachment = itemView.findViewById(R.id.attachment);
+            centegory_name=itemView.findViewById(R.id.categoryView);
         }
     }
 }
