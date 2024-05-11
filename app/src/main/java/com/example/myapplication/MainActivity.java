@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ToDoAdapter;
@@ -55,9 +56,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
         db=new DatabaseHandler(MainActivity.this);
         db.openDatabase();
 
@@ -76,7 +74,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             public boolean onQueryTextChange(String newText) {
                 if(!newText.isEmpty()){
                     filterList(newText);
-
+                }
+                else{
+                    viewAll();
                 }
                 return true;
             }
@@ -111,14 +111,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
 
-
-
-
-
         //get recyclerview as a variable
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ImageButton imgBtn = findViewById(R.id.faqBtn);
+        ImageView imgBtn = findViewById(R.id.faqBtn);
 
         fab=findViewById(R.id.fab);
 
@@ -179,16 +175,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     //filterList
     private void filterList(String text) {
         ArrayList<ToDoModel> filteredList = new ArrayList<>();
-
-            for (ToDoModel task : taskList) {
-                if (task.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                    filteredList.add(task);
+                for (ToDoModel task : taskList) {
+                    if (task.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                        filteredList.add(task);
+                    }
+                    if (task.getDueDate().contains(text)) {
+                        filteredList.add(task);
+                    }
                 }
-                if (task.getDueDate().contains(text)) {
-                    filteredList.add(task);
-                }
-
-            }
 
             if (filteredList.isEmpty()) {
                 Toast.makeText(this, "No Data Found!", Toast.LENGTH_SHORT).show();
@@ -222,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 task.setTitle(cursor.getString(1));
                 task.setDescription(cursor.getString(2));
                 task.setDueDate(cursor.getString(3));
-                task.setCategory(cursor.getString(5));
+                task.setCategory(cursor.getString(4));
 
                 System.out.println(cursor.getString(5));
 

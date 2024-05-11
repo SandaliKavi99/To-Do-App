@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Model.ToDoModel;
 import com.example.myapplication.Utils.DatabaseHandler;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 public class AddActivity extends AppCompatActivity {
     EditText titleInput,descriptionInput,dueDateInput,priorityInput;
@@ -28,22 +29,22 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        autoCompleteTextView=findViewById(R.id.auto_complete_txt);
-        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item,items);
+        autoCompleteTextView = findViewById(R.id.auto_complete_txt);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, items);
         autoCompleteTextView.setAdapter(adapterItems);
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                item= parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), "Item:"+item, Toast.LENGTH_SHORT).show();
+                item = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), "Item:" + item, Toast.LENGTH_SHORT).show();
             }
         });
 
-        titleInput= findViewById(R.id.title);
-        descriptionInput= findViewById(R.id.description);
-        dueDateInput= findViewById(R.id.dueDate);
-        addBtn= findViewById(R.id.save);
+        titleInput = findViewById(R.id.title);
+        descriptionInput = findViewById(R.id.description);
+        dueDateInput = findViewById(R.id.dueDate);
+        addBtn = findViewById(R.id.save);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +56,10 @@ public class AddActivity extends AppCompatActivity {
                 task.setDescription(descriptionInput.getText().toString().trim());
                 task.setDueDate(dueDateInput.getText().toString().trim());
                 task.setCategory(autoCompleteTextView.getText().toString().trim());
+                Log.i("print", autoCompleteTextView.getText().toString().trim());
                 databaseHandler.insertTask(task);
 //                System.out.println(task.getCategory());
-                
+
             }
         });
 
